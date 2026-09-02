@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>লগইন — Bosoti Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#050F1C; --navy2:#081A2C; --navy3:#0C2338;
+  --gold:#D6A13B; --gold-l:#F0CE85; --gold-d:#B0801F;
+  --line:rgba(214,161,59,.16); --muted:#8291A3; --silver:#C9D3DE;
+  --sans:'Manrope','Noto Sans Bengali',system-ui,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{height:100vh;display:flex;align-items:center;justify-content:center;font-family:var(--sans);background:var(--navy);color:var(--silver)}
+.login-box{width:100%;max-width:380px;background:var(--navy2);padding:2.5rem;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.brand{text-align:center;margin-bottom:2rem}
+.brand .icon{width:48px;height:48px;background:linear-gradient(135deg,var(--gold-d),var(--gold));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 1rem}
+.brand h1{font-size:1.2rem;font-weight:700;color:#fff}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
+.field input{width:100%;padding:.8rem 1rem;background:var(--navy3);border:1px solid var(--line);border-radius:8px;color:#fff;font-family:inherit;font-size:.9rem}
+.field input:focus{border-color:var(--gold);outline:none}
+.btn{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--gold-d),var(--gold));color:var(--navy);border:none;border-radius:50px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:1rem;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(214,161,59,.4)}
+.alert{padding:.8rem;border-radius:8px;font-size:.8rem;margin-bottom:1rem;text-align:center;background:rgba(220,53,69,.15);border:1px solid rgba(220,53,69,.3);color:#ff6b7a}
+</style>
+</head>
+<body>
+<div class="login-box">
+  <div class="brand">
+    <div class="icon">🏢</div>
+    <h1>Bosoti Admin</h1>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for cat, msg in messages %}
+      <div class="alert alert-{{ cat }}">{{ msg }}</div>
+    {% endfor %}
+  {% endwith %}
+  <form method="POST">
+    <div class="field">
+      <label>ইউজারনেম</label>
+      <input type="text" name="username" required autofocus autocomplete="username">
+    </div>
+    <div class="field">
+      <label>পাসওয়ার্ড</label>
+      <input type="password" name="password" required autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn">লগইন করুন</button>
+  </form>
+</div>
+</body>
+</html>

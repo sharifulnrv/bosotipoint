@@ -1,0 +1,45 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}ড্যাশবোর্ড{% endblock %}
+{% block page_sub %}সিস্টেম ওভারভিউ{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="num">{{ stats.total }}</div>
+    <div class="lbl">মোট ফ্ল্যাট</div>
+  </div>
+  <div class="stat-card green">
+    <div class="num">{{ stats.available }}</div>
+    <div class="lbl">অ্যাভেইলঅ্যাবল</div>
+  </div>
+  <div class="stat-card red">
+    <div class="num">{{ stats.booked }}</div>
+    <div class="lbl">বুকড</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">{{ stats.pct }}<span style="font-size:1rem">%</span></div>
+    <div class="lbl">অকুপেন্সি রেট</div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+  <div class="card">
+    <div class="card-title">কুইক লিংকস</div>
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <a href="{{ url_for('admin.content') }}" class="btn btn-outline" style="justify-content:flex-start">✍️ হোমপেজ কন্টেন্ট এডিট করুন</a>
+      <a href="{{ url_for('admin.images') }}" class="btn btn-outline" style="justify-content:flex-start">🖼️ মিডিয়া গ্যালারি ({{ media_count }} ছবি)</a>
+      <a href="{{ url_for('admin.tracking') }}" class="btn btn-outline" style="justify-content:flex-start">📈 ট্র্যাকিং কোড ম্যানেজ করুন</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">সিস্টেম স্ট্যাটাস</div>
+    <p style="font-size:.85rem;color:var(--muted);line-height:1.6">
+      ✓ ডেটাবেস কানেক্টেড<br>
+      ✓ লাইভ ফ্ল্যাট স্ট্যাটাস ফেচিং অ্যাক্টিভ (nexusluxurytower.nddlbd.com)<br>
+      ✓ ইমেজ রিসাইজিং মডিউল রেডি (Pillow)<br>
+      ✓ সিস্টেম ভার্সন ১.০.০
+    </p>
+  </div>
+</div>
+{% endblock %}

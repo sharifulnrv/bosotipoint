@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% block title %}Content Editor{% endblock %}
+{% block page_title %}কন্টেন্ট এডিটর{% endblock %}
+{% block page_sub %}ওয়েবসাইটের টেক্সট ও লিংক পরিবর্তন করুন{% endblock %}
+
+{% block content %}
+<div class="tabs">
+  {% for key, name in sections %}
+  <a href="{{ url_for('admin.content', section=key) }}" class="tab {% if active == key %}active{% endif %}">
+    {{ name }}
+  </a>
+  {% endfor %}
+</div>
+
+<div class="card">
+  <form method="POST" action="{{ url_for('admin.content_save') }}">
+    <input type="hidden" name="_section" value="{{ active }}">
+    
+    <div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem">
+      {% for s in settings %}
+      <div class="field">
+        <label>{{ s.label }}</label>
+        {% if s.value_type == 'text' or s.value_type == 'html' %}
+          <input type="text" name="{{ s.key }}" value="{{ s.value }}">
+        {% elif s.value_type == 'textarea' %}
+          <textarea name="{{ s.key }}">{{ s.value }}</textarea>
+        {% endif %}
+        <div class="hint">Key: {{ s.key }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-gold">✓ সেভ করুন</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "admin/base.html" %}
+{% block title %}Tracking Codes{% endblock %}
+{% block page_title %}ট্র্যাকিং কোড ম্যানেজার{% endblock %}
+{% block page_sub %}অ্যানালিটিক্স ও পিক্সেল ইন্টিগ্রেশন{% endblock %}
+
+{% block content %}
+<form method="POST">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+    
+    <!-- FB Pixel -->
+    <div class="card">
+      <div class="card-title">Facebook (Meta) Pixel</div>
+      <div class="field">
+        <label>Pixel ID</label>
+        <input type="text" name="tracking_fb_pixel_id" value="{{ settings.tracking_fb_pixel_id }}" placeholder="e.g. 123456789012345">
+      </div>
+      <label class="toggle-wrap">
+        <div class="toggle">
+          <input type="checkbox" name="tracking_fb_pixel_enabled" value="1" {% if settings.tracking_fb_pixel_enabled == '1' %}checked{% endif %}>
+          <div class="slider"></div>
+        </div>
+        <div class="toggle-label">এনাবল করুন</div>
+      </label>
+    </div>
+
+    <!-- GA4 -->
+    <div class="card">
+      <div class="card-title">Google Analytics (GA4)</div>
+      <div class="field">
+        <label>Measurement ID</label>
+        <input type="text" name="tracking_ga4_id" value="{{ settings.tracking_ga4_id }}" placeholder="e.g. G-XXXXXXX">
+      </div>
+      <label class="toggle-wrap">
+        <div class="toggle">
+          <input type="checkbox" name="tracking_ga4_enabled" value="1" {% if settings.tracking_ga4_enabled == '1' %}checked{% endif %}>
+          <div class="slider"></div>
+        </div>
+        <div class="toggle-label">এনাবল করুন</div>
+      </label>
+    </div>
+
+    <!-- GTM -->
+    <div class="card">
+      <div class="card-title">Google Tag Manager</div>
+      <div class="field">
+        <label>Container ID</label>
+        <input type="text" name="tracking_gtm_id" value="{{ settings.tracking_gtm_id }}" placeholder="e.g. GTM-XXXXXX">
+      </div>
+      <label class="toggle-wrap">
+        <div class="toggle">
+          <input type="checkbox" name="tracking_gtm_enabled" value="1" {% if settings.tracking_gtm_enabled == '1' %}checked{% endif %}>
+          <div class="slider"></div>
+        </div>
+        <div class="toggle-label">এনাবল করুন</div>
+      </label>
+    </div>
+
+    <!-- TikTok -->
+    <div class="card">
+      <div class="card-title">TikTok Pixel</div>
+      <div class="field">
+        <label>Pixel ID</label>
+        <input type="text" name="tracking_tiktok_pixel_id" value="{{ settings.tracking_tiktok_pixel_id }}" placeholder="e.g. CE123ABCXYZ">
+      </div>
+      <label class="toggle-wrap">
+        <div class="toggle">
+          <input type="checkbox" name="tracking_tiktok_enabled" value="1" {% if settings.tracking_tiktok_enabled == '1' %}checked{% endif %}>
+          <div class="slider"></div>
+        </div>
+        <div class="toggle-label">এনাবল করুন</div>
+      </label>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-title">Custom Scripts (Advanced)</div>
+    <div class="field">
+      <label>Head Scripts (&lt;head&gt;)</label>
+      <textarea name="tracking_custom_head" placeholder="<script>...</script>" style="font-family:monospace;font-size:.8rem">{{ settings.tracking_custom_head }}</textarea>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label>Body Scripts (End of &lt;body&gt;)</label>
+      <textarea name="tracking_custom_body" placeholder="<script>...</script>" style="font-family:monospace;font-size:.8rem">{{ settings.tracking_custom_body }}</textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-gold">✓ সেভ করুন</button>
+</form>
+{% endblock %}

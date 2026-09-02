@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+{% block title %}Settings{% endblock %}
+{% block page_title %}সিস্টেম সেটিংস{% endblock %}
+{% block page_sub %}SEO এবং সিকিউরিটি{% endblock %}
+
+{% block content %}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+
+  <!-- SEO & Contact -->
+  <div class="card">
+    <div class="card-title">SEO ও বেসিক তথ্য</div>
+    <form method="POST">
+      <input type="hidden" name="action" value="seo">
+      
+      <div class="field">
+        <label>সাইট টাইটেল</label>
+        <input type="text" name="site_title" value="{{ data.site_title }}">
+      </div>
+      <div class="field">
+        <label>মেটা ডেসক্রিপশন (SEO)</label>
+        <textarea name="site_description">{{ data.site_description }}</textarea>
+      </div>
+      <div class="field">
+        <label>WhatsApp নাম্বার</label>
+        <input type="text" name="contact_whatsapp" value="{{ data.contact_whatsapp }}" placeholder="8801...">
+        <div class="hint">Country code সহ লিখুন, কোনো + বা স্পেস ছাড়া</div>
+      </div>
+      <div class="field">
+        <label>ফোন নাম্বার (ডিসপ্লে)</label>
+        <input type="text" name="contact_phone" value="{{ data.contact_phone }}">
+      </div>
+
+      <button type="submit" class="btn btn-gold">✓ সেভ করুন</button>
+    </form>
+  </div>
+
+  <!-- Security -->
+  <div class="card">
+    <div class="card-title">সিকিউরিটি</div>
+    <form method="POST">
+      <input type="hidden" name="action" value="password">
+      
+      <div class="field">
+        <label>নতুন পাসওয়ার্ড</label>
+        <input type="password" name="new_password" required minlength="6">
+      </div>
+      <div class="field">
+        <label>পাসওয়ার্ড কনফার্ম করুন</label>
+        <input type="password" name="confirm_password" required minlength="6">
+      </div>
+
+      <button type="submit" class="btn btn-gold">✓ পাসওয়ার্ড পরিবর্তন করুন</button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}
