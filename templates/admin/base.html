@@ -183,6 +183,10 @@ tr:hover td{background:rgba(255,255,255,.02)}
       <a href="{{ url_for('admin.images') }}" class="sb-link {% if request.endpoint == 'admin.images' %}active{% endif %}">
         <span class="ic">🖼️</span> ইমেজ ম্যানেজার
       </a>
+      <div class="sb-section">লিডস</div>
+      <a href="{{ url_for('admin.visitors') }}" class="sb-link {% if request.endpoint == 'admin.visitors' %}active{% endif %}">
+        <span class="ic">👥</span> ভিজিটর লিস্ট
+      </a>
       <div class="sb-section">মার্কেটিং</div>
       <a href="{{ url_for('admin.tracking') }}" class="sb-link {% if request.endpoint == 'admin.tracking' %}active{% endif %}">
         <span class="ic">📈</span> ট্র্যাকিং কোড

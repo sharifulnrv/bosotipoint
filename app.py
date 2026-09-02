@@ -1,10 +1,11 @@
 import os
 import re
+import time
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 from flask_login import LoginManager
-from models import db, User, SiteSetting, DEFAULT_SETTINGS
+from models import db, User, SiteSetting, DEFAULT_SETTINGS, Visitor
 
 # ─── App factory ────────────────────────────────────────────────────
 app = Flask(__name__)
@@ -49,7 +50,14 @@ def init_db():
 
 
 # ─── Apartment data fetcher ─────────────────────────────────────────
+CACHE_TIMEOUT = 300 # 5 minutes
+apartment_cache = {'data': [], 'timestamp': 0}
+
 def fetch_apartments():
+    global apartment_cache
+    if time.time() - apartment_cache['timestamp'] < CACHE_TIMEOUT and apartment_cache['data']:
+        return apartment_cache['data']
+
     url = "https://nexusluxurytower.nddlbd.com/public"
     try:
         response = requests.get(url, timeout=10)
@@ -83,7 +91,9 @@ def fetch_apartments():
         return (int(match.group(2)), match.group(1)) if match else (0, apt['id'])
 
     apartments.sort(key=sort_key)
-    return apartments[:84]
+    apartment_cache['data'] = apartments[:84]
+    apartment_cache['timestamp'] = time.time()
+    return apartment_cache['data']
 
 
 # ─── Public routes ───────────────────────────────────────────────────
@@ -184,6 +194,23 @@ def index():
                            booked=booked_count,
                            percentage=percentage,
                            cfg=cfg)
+
+@app.route('/api/book', methods=['POST'])
+def book_visit():
+    data = request.json
+    if not data or not data.get('fname') or not data.get('fphone'):
+        return jsonify({'success': False, 'error': 'Missing required fields'}), 400
+        
+    visitor = Visitor(
+        name=data.get('fname'),
+        phone=data.get('fphone'),
+        time_pref=data.get('ftime'),
+        budget=data.get('fbudget'),
+        message=data.get('fmsg')
+    )
+    db.session.add(visitor)
+    db.session.commit()
+    return jsonify({'success': True})
 
 
 # ─── Entry point ─────────────────────────────────────────────────────

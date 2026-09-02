@@ -159,3 +159,15 @@ def settings():
         'contact_phone': SiteSetting.get('contact_phone'),
     }
     return render_template('admin/settings.html', data=data)
+
+# ────────────────────────────────────────────────────────────────────
+# Visitors list
+# ────────────────────────────────────────────────────────────────────
+from models import Visitor
+
+@admin_bp.route('/visitors')
+@login_required
+def visitors():
+    items = Visitor.query.order_by(Visitor.created_at.desc()).all()
+    return render_template('admin/visitors.html', visitors=items)
+

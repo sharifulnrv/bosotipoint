@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Visitor List{% endblock %}
+{% block page_title %}ভিজিটর লিস্ট{% endblock %}
+{% block page_sub %}Manage Site Visit Appointments{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-title">সকল ভিজিটর ({{ visitors|length }})</div>
+  {% if visitors %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>নাম</th>
+          <th>ফোন / হোয়াটসঅ্যাপ</th>
+          <th>পছন্দের সময়</th>
+          <th>বাজেট</th>
+          <th>বার্তা</th>
+          <th>তারিখ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for visitor in visitors %}
+        <tr>
+          <td style="font-weight: 600; color: #fff">{{ visitor.name }}</td>
+          <td><a href="https://wa.me/{{ visitor.phone|replace(' ', '')|replace('-', '')|replace('+', '') }}" target="_blank" style="color: var(--gold-l)">{{ visitor.phone }} ↗</a></td>
+          <td>{{ visitor.time_pref }}</td>
+          <td>{{ visitor.budget }}</td>
+          <td>{{ visitor.message }}</td>
+          <td>{{ visitor.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div style="padding: 2rem; text-align: center; color: var(--muted);">
+    এখনো কোনো ভিজিটর রিকোয়েস্ট আসেনি।
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -151,3 +151,13 @@ DEFAULT_SETTINGS = [
     {'key': 'contact_whatsapp', 'value': '8801617929270', 'value_type': 'text', 'label': 'WhatsApp Number (with country code, no +)', 'section': 'contact'},
     {'key': 'contact_phone', 'value': '+8801617929270', 'value_type': 'text', 'label': 'Phone Number (display)', 'section': 'contact'},
 ]
+
+class Visitor(db.Model):
+    __tablename__ = 'visitors'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150), nullable=False)
+    phone = db.Column(db.String(50), nullable=False)
+    time_pref = db.Column(db.String(50))
+    budget = db.Column(db.String(50))
+    message = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
