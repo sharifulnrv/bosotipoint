@@ -108,6 +108,7 @@ def images_delete(file_id):
 def tracking():
     tracking_keys = [k for k in [
         'tracking_fb_pixel_id', 'tracking_fb_pixel_enabled',
+        'tracking_fb_capi_token', 'tracking_fb_capi_enabled',
         'tracking_ga4_id', 'tracking_ga4_enabled',
         'tracking_gtm_id', 'tracking_gtm_enabled',
         'tracking_tiktok_pixel_id', 'tracking_tiktok_enabled',

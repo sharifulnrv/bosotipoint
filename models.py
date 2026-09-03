@@ -64,6 +64,8 @@ DEFAULT_SETTINGS = [
     # ── Tracking ────────────────────────────────────────────────────
     {'key': 'tracking_fb_pixel_id', 'value': '', 'value_type': 'text', 'label': 'Facebook Pixel ID', 'section': 'tracking'},
     {'key': 'tracking_fb_pixel_enabled', 'value': '0', 'value_type': 'bool', 'label': 'Enable FB Pixel', 'section': 'tracking'},
+    {'key': 'tracking_fb_capi_token', 'value': '', 'value_type': 'text', 'label': 'Facebook CAPI Token', 'section': 'tracking'},
+    {'key': 'tracking_fb_capi_enabled', 'value': '0', 'value_type': 'bool', 'label': 'Enable FB CAPI', 'section': 'tracking'},
     {'key': 'tracking_ga4_id', 'value': '', 'value_type': 'text', 'label': 'Google Analytics Measurement ID (G-XXXXXXX)', 'section': 'tracking'},
     {'key': 'tracking_ga4_enabled', 'value': '0', 'value_type': 'bool', 'label': 'Enable GA4', 'section': 'tracking'},
     {'key': 'tracking_gtm_id', 'value': '', 'value_type': 'text', 'label': 'Google Tag Manager ID (GTM-XXXXX)', 'section': 'tracking'},

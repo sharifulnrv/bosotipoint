@@ -583,6 +583,8 @@ height="0" width="0" style="display:none;visibility:hidden" loading="lazy"></ifr
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
+      <div class="hero-split" style="display:flex; flex-wrap:wrap; gap:3rem; align-items:center; margin-bottom:4rem;">
+        <div class="hero-text" style="flex:1; min-width:300px;">
     <div class="hero-tag"><span class="dot"></span>চন্দ্রিমা মডেল টাউন · মোহাম্মদপুর, ঢাকা</div>
     <h1 class="hero-title display">
       <span class="line"><span class="word">নিজের&nbsp;</span><span class="word">একটি&nbsp;</span><span class="word">বাড়ি,</span></span>
@@ -595,7 +597,12 @@ height="0" width="0" style="display:none;visibility:hidden" loading="lazy"></ifr
       </a>
       <a href="#payment" class="btn btn-outline">পেমেন্ট প্ল্যান দেখুন</a>
     </div>
-    <div class="hero-stats">
+    </div>
+        <div class="hero-img-wrap reveal-scale" style="flex:1; min-width:300px; display:flex; justify-content:center;">
+          <img src="{{ url_for('static', filename='images/hero_family.jpg') }}" alt="Family Trust" style="width:100%; max-width:550px; border-radius:var(--r-xl); border:1px solid var(--navy-line); box-shadow:0 30px 60px rgba(0,0,0,0.6); object-fit:cover; aspect-ratio:4/3;">
+        </div>
+      </div>
+      <div class="hero-stats">
       <div class="hero-stat"><div class="num">B+G+18</div><div class="lbl">তলা টাওয়ার</div></div>
       <div class="hero-stat"><div class="num">1,800 <span style="font-size:.55em">sqft</span></div><div class="lbl">৪ বেড · ৩ বাথ</div></div>
       <div class="hero-stat"><div class="num">84</div><div class="lbl">মোট রেসিডেন্স</div></div>

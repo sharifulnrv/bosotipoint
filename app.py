@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, jsonify
 from flask_login import LoginManager
+import hashlib
 from models import db, User, SiteSetting, DEFAULT_SETTINGS, Visitor
 
 # ─── App factory ────────────────────────────────────────────────────
@@ -210,6 +211,31 @@ def book_visit():
     )
     db.session.add(visitor)
     db.session.commit()
+
+    # FB CAPI Integration
+    if SiteSetting.get('tracking_fb_capi_enabled') == '1':
+        pixel_id = SiteSetting.get('tracking_fb_pixel_id')
+        token = SiteSetting.get('tracking_fb_capi_token')
+        if pixel_id and token:
+            try:
+                phone_hash = hashlib.sha256(data.get('fphone', '').strip().encode('utf-8')).hexdigest()
+                url = f"https://graph.facebook.com/v19.0/{pixel_id}/events?access_token={token}"
+                payload = {
+                    "data": [
+                        {
+                            "event_name": "Lead",
+                            "event_time": int(time.time()),
+                            "action_source": "website",
+                            "user_data": {
+                                "ph": [phone_hash]
+                            }
+                        }
+                    ]
+                }
+                requests.post(url, json=payload, timeout=5)
+            except Exception as e:
+                print(f"FB CAPI Error: {e}")
+
     return jsonify({'success': True})
 
 
