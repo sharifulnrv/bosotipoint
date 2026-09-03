@@ -92,7 +92,7 @@ def fetch_apartments():
         return (int(match.group(2)), match.group(1)) if match else (0, apt['id'])
 
     apartments.sort(key=sort_key)
-    apartment_cache['data'] = apartments[:84]
+    apartment_cache['data'] = apartments
     apartment_cache['timestamp'] = time.time()
     return apartment_cache['data']
 
