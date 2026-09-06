@@ -212,6 +212,46 @@ def book_visit():
     db.session.add(visitor)
     db.session.commit()
 
+    # Send Email Notification
+    def send_notification_email(data):
+        with app.app_context():
+            smtp_server = SiteSetting.get('smtp_server')
+            smtp_port = SiteSetting.get('smtp_port', '587')
+            smtp_username = SiteSetting.get('smtp_username')
+            smtp_password = SiteSetting.get('smtp_password')
+            smtp_sender = SiteSetting.get('smtp_sender_email')
+            smtp_receivers = SiteSetting.get('smtp_receiver_emails')
+
+            if smtp_server and smtp_username and smtp_password and smtp_sender and smtp_receivers:
+                import smtplib
+                from email.message import EmailMessage
+                
+                msg = EmailMessage()
+                msg['Subject'] = f"New Booking Request: {data.get('fname')}"
+                msg['From'] = smtp_sender
+                msg['To'] = [email.strip() for email in smtp_receivers.split(',') if email.strip()]
+                
+                content = f"New Booking Request Details:\n\n" \
+                          f"Name: {data.get('fname')}\n" \
+                          f"Phone: {data.get('fphone')}\n" \
+                          f"Time Preference: {data.get('ftime', 'N/A')}\n" \
+                          f"Budget: {data.get('fbudget', 'N/A')}\n" \
+                          f"Message: {data.get('fmsg', 'N/A')}\n"
+                
+                msg.set_content(content)
+                
+                try:
+                    server = smtplib.SMTP(smtp_server, int(smtp_port))
+                    server.starttls()
+                    server.login(smtp_username, smtp_password)
+                    server.send_message(msg)
+                    server.quit()
+                except Exception as e:
+                    print(f"Failed to send email: {e}")
+
+    import threading
+    threading.Thread(target=send_notification_email, args=(data,)).start()
+
     # FB CAPI Integration
     if SiteSetting.get('tracking_fb_capi_enabled') == '1':
         pixel_id = SiteSetting.get('tracking_fb_pixel_id')

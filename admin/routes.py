@@ -42,6 +42,7 @@ SECTIONS = [
     ('booking',  'বুকিং ফর্ম'),
     ('footer',   'ফুটার ও পার্টনার'),
     ('contact',  'যোগাযোগ / WhatsApp'),
+    ('smtp',     'SMTP ইমেইল সেটিংস'),
 ]
 
 @admin_bp.route('/content')

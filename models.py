@@ -152,6 +152,14 @@ DEFAULT_SETTINGS = [
     # ── Contact / WhatsApp ────────────────────────────────────────────
     {'key': 'contact_whatsapp', 'value': '8801617929270', 'value_type': 'text', 'label': 'WhatsApp Number (with country code, no +)', 'section': 'contact'},
     {'key': 'contact_phone', 'value': '+8801617929270', 'value_type': 'text', 'label': 'Phone Number (display)', 'section': 'contact'},
+
+    # ── SMTP Settings ───────────────────────────────────────────────
+    {'key': 'smtp_server', 'value': '', 'value_type': 'text', 'label': 'SMTP Server', 'section': 'smtp'},
+    {'key': 'smtp_port', 'value': '587', 'value_type': 'text', 'label': 'SMTP Port', 'section': 'smtp'},
+    {'key': 'smtp_username', 'value': '', 'value_type': 'text', 'label': 'SMTP Username', 'section': 'smtp'},
+    {'key': 'smtp_password', 'value': '', 'value_type': 'text', 'label': 'SMTP Password', 'section': 'smtp'},
+    {'key': 'smtp_sender_email', 'value': '', 'value_type': 'text', 'label': 'Sender Email', 'section': 'smtp'},
+    {'key': 'smtp_receiver_emails', 'value': '', 'value_type': 'text', 'label': 'Receiver Emails (Comma separated)', 'section': 'smtp'},
 ]
 
 class Visitor(db.Model):
