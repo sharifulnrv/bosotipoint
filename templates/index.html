@@ -617,14 +617,14 @@ height="0" width="0" style="display:none;visibility:hidden" loading="lazy"></ifr
   <div class="hero-content">
       <div class="hero-split" style="display:flex; flex-wrap:wrap; gap:3rem; align-items:center; margin-bottom:4rem;">
         <div class="hero-text" style="flex:1; min-width:300px;">
-    <div class="hero-tag"><span class="dot"></span>চন্দ্রিমা মডেল টাউন · মোহাম্মদপুর, ঢাকা</div>
+    <div class="hero-tag"><span class="dot"></span>{{ cfg.hero_location_tag }}</div>
     <h1 class="hero-title display">
-      <span class="line"><span class="word">নিজের&nbsp;</span><span class="word">একটি&nbsp;</span><span class="word">বাড়ি,</span></span>
-      <span class="line"><span class="word">গড়া&nbsp;</span><span class="word">হবে&nbsp;</span><span class="word"><em>একসাথে।</em></span></span>
+      <span class="line">{{ cfg.hero_title_line1 }}</span>
+      <span class="line"><em>{{ cfg.hero_title_line2 }}</em></span>
     </h1>
-    <p class="hero-sub">NextGen Luxury Tower শুধু একটি ফ্ল্যাট নয় — এটি আপনার সন্তানের শৈশবের ঠিকানা, বাবা-মায়ের নিরাপদ আশ্রয়, আর নিজের হাতে গড়া স্বপ্নের বাস্তব রূপ। বুড়িগঙ্গার পাড়ে ১৮ তলার এই টাওয়ারে মাত্র ৮৪টি পরিবার মিলে গড়ে তুলবে নিজেদের ভবিষ্যৎ ঠিকানা — স্বচ্ছ ও নির্ধারিত কিস্তিতে।</p>
+    <p class="hero-sub">{{ cfg.hero_subtitle }}</p>
     <div class="hero-cta">
-      <a href="#book" class="btn btn-gold" data-ripple>প্রাইভেট সাইট ভিজিট বুক করুন
+      <a href="{{ cfg.hero_cta1_url }}" class="btn btn-gold" data-ripple>{{ cfg.hero_cta1_label }}
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="#payment" class="btn btn-outline">পেমেন্ট প্ল্যান দেখুন</a>
@@ -635,10 +635,10 @@ height="0" width="0" style="display:none;visibility:hidden" loading="lazy"></ifr
         </div>
       </div>
       <div class="hero-stats">
-      <div class="hero-stat"><div class="num">B+G+18</div><div class="lbl">তলা টাওয়ার</div></div>
-      <div class="hero-stat"><div class="num">1,800 <span style="font-size:.55em">sqft</span></div><div class="lbl">৪ বেড · ৩ বাথ</div></div>
-      <div class="hero-stat"><div class="num">84</div><div class="lbl">মোট রেসিডেন্স</div></div>
-      <div class="hero-stat"><div class="num">৳52L</div><div class="lbl">শুরু যেখান থেকে</div></div>
+      <div class="hero-stat"><div class="num">{{ cfg.hero_stat1_num|safe }}</div><div class="lbl">{{ cfg.hero_stat1_lbl }}</div></div>
+      <div class="hero-stat"><div class="num">{{ cfg.hero_stat2_num|safe }}</div><div class="lbl">{{ cfg.hero_stat2_lbl }}</div></div>
+      <div class="hero-stat"><div class="num">{{ cfg.hero_stat3_num|safe }}</div><div class="lbl">{{ cfg.hero_stat3_lbl }}</div></div>
+      <div class="hero-stat"><div class="num">{{ cfg.hero_stat4_num|safe }}</div><div class="lbl">{{ cfg.hero_stat4_lbl }}</div></div>
     </div>
   </div>
   <div class="hero-scroll"><span>স্ক্রল করুন</span><span class="ln"></span></div>
@@ -647,10 +647,10 @@ height="0" width="0" style="display:none;visibility:hidden" loading="lazy"></ifr
 <!-- ===== TRUST STRIP ===== -->
 <div class="trust-strip">
   <div class="container trust-row">
-    <span>ডিজাইন ও তত্ত্বাবধানে <b>NDDL</b></span>
-    <span>নির্মাণে <b>Luxury Construction</b></span>
-    <span>মার্কেটিং পার্টনার <b>Creatrex</b></span>
-    <span>নির্মাণ শুরু <b>জুন–জুলাই ২০২৭</b></span>
+    <span>{{ cfg.trust_1|safe }}</span>
+    <span>{{ cfg.trust_2|safe }}</span>
+    <span>{{ cfg.trust_3|safe }}</span>
+    <span>{{ cfg.trust_4|safe }}</span>
   </div>
 </div>
 
