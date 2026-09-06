@@ -44,15 +44,21 @@
   --ease:cubic-bezier(.19,1,.22,1);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:var(--sans);
-  background:var(--navy-950);
-  color:var(--silver);
-  line-height:1.65;
-  font-weight:400;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+body {
+  font-family: var(--sans);
+  background: var(--navy-950);
+  color: var(--silver);
+  line-height: 1.65;
+  font-weight: 400;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}

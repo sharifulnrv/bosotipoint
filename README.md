@@ -49,5 +49,5 @@ If you are running the application on a production server (e.g., using Gunicorn 
 
 2. **Restart the Gunicorn service** to apply the code changes:
    ```bash
-   sudo systemctl restart bosotipoint
+   -m
    ```
