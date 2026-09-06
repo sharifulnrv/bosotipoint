@@ -25,8 +25,10 @@ def dashboard():
                  'pct': round(booked / (avail + booked) * 100) if (avail + booked) else 0}
     except Exception:
         pass
+    from models import Visitor
     media_count = MediaFile.query.count()
-    return render_template('admin/dashboard.html', stats=stats, media_count=media_count)
+    leads_count = Visitor.query.count()
+    return render_template('admin/dashboard.html', stats=stats, media_count=media_count, leads_count=leads_count)
 
 
 # ────────────────────────────────────────────────────────────────────

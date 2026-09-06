@@ -21,12 +21,17 @@
     <div class="num">{{ stats.pct }}<span style="font-size:1rem">%</span></div>
     <div class="lbl">অকুপেন্সি রেট</div>
   </div>
+  <div class="stat-card" style="border-left:4px solid var(--gold)">
+    <div class="num">{{ leads_count }}</div>
+    <div class="lbl">মোট লিডস (Leads)</div>
+  </div>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
   <div class="card">
     <div class="card-title">কুইক লিংকস</div>
     <div style="display:flex;flex-direction:column;gap:1rem">
+      <a href="{{ url_for('admin.visitors') }}" class="btn btn-outline" style="justify-content:flex-start">👥 ভিজিটরস (Leads) দেখুন</a>
       <a href="{{ url_for('admin.content') }}" class="btn btn-outline" style="justify-content:flex-start">✍️ হোমপেজ কন্টেন্ট এডিট করুন</a>
       <a href="{{ url_for('admin.images') }}" class="btn btn-outline" style="justify-content:flex-start">🖼️ মিডিয়া গ্যালারি ({{ media_count }} ছবি)</a>
       <a href="{{ url_for('admin.tracking') }}" class="btn btn-outline" style="justify-content:flex-start">📈 ট্র্যাকিং কোড ম্যানেজ করুন</a>
